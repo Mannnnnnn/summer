@@ -24,16 +24,16 @@ public class SysMenuServiceImpl implements SysMenuService {
         repository.findAll();
         List<TreeBo> treeBoList = new ArrayList<>();
         if (menuList != null && menuList.size() > 0) {
-            for (SysMenu menu : menuList) {
+            menuList.forEach(t ->{
                 TreeBo treeBo = new TreeBo();
-                treeBo.setUrl(menu.getUrl());
-                treeBo.setParentId(menu.getParentId());
-                treeBo.setIcon(menu.getIcon());
-                treeBo.setId(menu.getMenuId());
-                treeBo.setName(menu.getName());
-                treeBo.setType(menu.getType());
+                treeBo.setUrl(t.getUrl());
+                treeBo.setParentId(t.getParentId());
+                treeBo.setIcon(t.getIcon());
+                treeBo.setId(t.getMenuId());
+                treeBo.setName(t.getName());
+                treeBo.setType(t.getType());
                 treeBoList.add(treeBo);
-            }
+            });
         }
         TreeBuilder builder = new TreeBuilder();
         return builder.bulidTree(treeBoList);

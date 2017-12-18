@@ -8,12 +8,16 @@ public class TreeBuilder {
     public List<TreeBo> bulidTree(List<TreeBo> treeBoList) {
         List<TreeBo> trees = new ArrayList<>();
         treeBoList.forEach(treeBo -> {
+
             if (0 == treeBo.getParentId()) {
-                treeBoList.forEach(t -> {
-                    if (Objects.equals(t.getParentId(), treeBo.getId())) {
-                        treeBo.getChildren().add(t);
+                List<TreeBo> childTrees = new ArrayList<>();
+                treeBoList.forEach(t ->{
+
+                    if (Objects.equals(t.getParentId(),treeBo.getId())){
+                        childTrees.add(t);
                     }
                 });
+                treeBo.setChildren(childTrees);
                 trees.add(treeBo);
             }
         });
