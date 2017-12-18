@@ -7,19 +7,16 @@ import java.util.Objects;
 public class TreeBuilder {
     public List<TreeBo> bulidTree(List<TreeBo> treeBoList) {
         List<TreeBo> trees = new ArrayList<>();
-        for (TreeBo treeBo : treeBoList) {
+        treeBoList.forEach(treeBo -> {
             if (0 == treeBo.getParentId()) {
+                treeBoList.forEach(t -> {
+                    if (Objects.equals(t.getParentId(), treeBo.getId())) {
+                        treeBo.getChildren().add(t);
+                    }
+                });
                 trees.add(treeBo);
             }
-            for (TreeBo it : treeBoList) {
-                if (Objects.equals(it.getParentId(), treeBo.getId())) {
-                    if (treeBo.getChildren() == null) {
-                        treeBo.setChildren(new ArrayList<TreeBo>());
-                    }
-                    treeBo.getChildren().add(it);
-                }
-            }
-        }
+        });
         return trees;
     }
 }

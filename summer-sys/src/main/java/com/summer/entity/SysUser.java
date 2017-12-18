@@ -1,43 +1,32 @@
 package com.summer.entity;
 
+import com.summer.base.entity.IdEntity;
+
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "SYS_USER")
-public class SysUser {
+public class SysUser extends IdEntity implements Serializable {
 
-    @Id
-    private long userId;
-    private String username;
+
+    private String userName;
     private String password;
-    private String salt;
+    private int mobile;
     private String email;
-    private String mobile;
-    private long status;
-    private long createUserId;
-    private Date createTime;
+    private String creator;
+    private char status;
+    private String headImg;
 
 
-    public long getUserId() {
-        return userId;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
-
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
 
     public String getPassword() {
         return password;
@@ -47,15 +36,13 @@ public class SysUser {
         this.password = password;
     }
 
-
-    public String getSalt() {
-        return salt;
+    public int getMobile() {
+        return mobile;
     }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
+    public void setMobile(int mobile) {
+        this.mobile = mobile;
     }
-
 
     public String getEmail() {
         return email;
@@ -65,53 +52,27 @@ public class SysUser {
         this.email = email;
     }
 
-
-    public String getMobile() {
-        return mobile;
+    public String getCreator() {
+        return creator;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
-
-    public long getStatus() {
+    public char getStatus() {
         return status;
     }
 
-    public void setStatus(long status) {
+    public void setStatus(char status) {
         this.status = status;
     }
 
-
-    public long getCreateUserId() {
-        return createUserId;
+    public String getHeadImg() {
+        return headImg;
     }
 
-    public void setCreateUserId(long createUserId) {
-        this.createUserId = createUserId;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    @Override
-    public String toString() {
-        return "SysUser{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", salt='" + salt + '\'' +
-                ", email='" + email + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", status=" + status +
-                ", createUserId=" + createUserId +
-                ", createTime=" + createTime +
-                '}';
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg;
     }
 }
