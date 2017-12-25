@@ -2,7 +2,7 @@ var menuItem = Vue.extend({
     name: 'menu-item',
     props: {item: {}},
     template: [
-        '<li class="layui-nav-item layui-nav-itemed">',
+        '<li class="layui-nav-item">',
         '<a class="" href="javascript:" v-if="item.type==0">{{item.name}}</a>',
         '<dl class="layui-nav-child"  v-for="item in item.children">',
         '<dd><a :href="\'#\'+item.url">{{item.name}}</a></dd>',
@@ -40,6 +40,7 @@ var vm = new Vue({
             })
                 .then(function (response) {
                     vm.menuList=response.data.menuList;
+                    console.log(vm.menuList);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -80,12 +81,3 @@ function routerList(router, menuList) {
         }
     }
 }
-
-//iframe自适应
-$(window).on('resize', function() {
-    var $content = $('.content');
-    $content.height($(this).height() - 120);
-    $content.find('iframe').each(function() {
-        $(this).height($content.height());
-    });
-}).resize();
